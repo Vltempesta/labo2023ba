@@ -223,9 +223,9 @@ dtrain <- dataset[foto_mes %in% PARAM$training_meses, ]
 
 
 # creo la carpeta donde va el experimento
-dir.create("./exp/", showWarnings = FALSE)
-carpeta_experimento <- paste0("./exp/", PARAM$experimento, "/")
-dir.create(paste0("./exp/", PARAM$experimento, "/"),
+dir.create("~/exp/", showWarnings = FALSE)
+carpeta_experimento <- paste0("~/exp/", PARAM$experimento, "/")
+dir.create(paste0("~/exp/", PARAM$experimento, "/"),
   showWarnings = FALSE
 )
 
@@ -279,3 +279,10 @@ if (!file.exists(archivo_BO)) {
 } else {
   run <- mboContinue(archivo_BO)
 } # retomo en caso que ya exista
+
+# creo la carpeta del experimento en el bucket
+dir.create("~/buckets/b1/exp/", showWarnings = FALSE)
+dir.create( paste0( "~/buckets/b1/exp/", PARAM$experimento, "/"), showWarnings = FALSE)
+
+# copio los archivos
+system(  paste0( "cp -r ~/exp/", PARAM$experimento, "/*  ~/buckets/b1/exp/", PARAM$experimento) )
