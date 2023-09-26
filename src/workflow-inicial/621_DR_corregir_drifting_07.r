@@ -11,15 +11,15 @@ require("yaml")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "DR6214"
+PARAM$experimento <- "DR6210"
 
-PARAM$exp_input <- "CA6115"
+PARAM$exp_input <- "CA6110"
 
 PARAM$variables_intrames <- TRUE # atencion esto esta en TRUE
 
 # valores posibles
-#  "ninguno", "rank_simple", "rank_cero_fijo", "deflacion", "estandarizar", "deflacion_cero_fijo"
-PARAM$metodo <- "deflacion_cero_fijo"
+#  "ninguno", "rank_simple", "rank_cero_fijo", "deflacion", "estandarizar"
+PARAM$metodo <- "rank_cero_fijo"
 
 PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
@@ -181,18 +181,19 @@ drift_deflacion <- function(campos_monetarios) {
   )
 
   vIPC <- c(
-    1.89099703117269, 1.8203969743448, 1.7197070602528,
-    1.68615914741354, 1.6345169740711, 1.60805900879199,
-    1.54466308426986, 1.51657066665608, 1.47014664132885,
-    1.39794863916278, 1.37615701355918, 1.37615701355918,
-    1.34888149256681, 1.260026672953, 1.18592022193501,
-    1.17407045580921, 1.17196601588195, 1.14577877447372,
-    1.10637444778332, 1.10042672901556, 1.08011621613601,
-    1.03264066491845, 1.01979711889079, 1,
-    0.981925977312727, 0.924979396925937, 0.882082216316088,
-    0.830661874741213, 0.820847307823244, 0.791232623163457,
-    0.757526293463998, 0.740202263969685, 0.71019040221213
- )
+    1.76873315363881, 1.68429158110883, 1.68429158110883,
+    1.68429158110883, 1.56685768863419, 1.56685768863419,
+    1.48528746038932, 1.4051391862955, 1.33265637692933,
+    1.28114017961734, 1.23206909500563, 1.09989943010392,
+    1.09989943010392, 1.09989943010392, 1.09989943010392,
+    1.09989943010392, 1.09989943010392, 1.09989943010392,
+    1.09989943010392, 1.09989943010392, 1.09989943010392,
+    1.09989943010392, 1.09989943010392, 1,
+    1, 1, 0.966136631330978,
+    0.924746335963923, 0.876569596580283, 0.876569596580283,
+    0.924746335963923, 0.876569596580283, 0.876569596580283,
+    0.876569596580283, 0.804363814660456, 0.737800764560378
+  )
 
   tb_IPC <- data.table(
     "foto_mes" = vfoto_mes,
@@ -288,13 +289,7 @@ switch(PARAM$metodo,
   "rank_simple"    = drift_rank_simple(campos_monetarios),
   "rank_cero_fijo" = drift_rank_cero_fijo(campos_monetarios),
   "deflacion"      = drift_deflacion(campos_monetarios),
-  "estandarizar"   = drift_estandarizar(campos_monetarios),
-  "deflacion_cero_fijo"  =  {
-    # Primero, aplicar drift_rank_cero_fijo
-    drift_deflacion(campos_monetarios)
-    # Luego, aplicar drift_estandarizar
-    drift_rank_cero_fijo(campos_monetarios) 
-  }
+  "estandarizar"   = drift_estandarizar(campos_monetarios)
 )
 
 
