@@ -11,15 +11,15 @@ require("yaml")
 
 # Parametros del script
 PARAM <- list()
-PARAM$experimento <- "DR621111"
+PARAM$experimento <- "DR621112"
 
-PARAM$exp_input <- "CA61111"
+PARAM$exp_input <- "CA61112"
 
 PARAM$variables_intrames <- TRUE # atencion esto esta en TRUE
 
 # valores posibles
 #  "ninguno", "rank_simple", "rank_cero_fijo", "deflacion", "estandarizar"
-PARAM$metodo <- "rank_cero_fijo"
+PARAM$metodo <- "deflacion"
 
 PARAM$home <- "~/buckets/b1/"
 # FIN Parametros del script
