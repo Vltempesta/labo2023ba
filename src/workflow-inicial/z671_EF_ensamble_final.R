@@ -1,11 +1,17 @@
+if (!require(dplyr)) {
+  install.packages("dplyr")
+  library(dplyr)
+}
+library(dplyr)
+
 # Definir la variable 'envios'
-envios <- 11500
+envios <- 11000
 
 # Lista para almacenar los dataframes
 lista_dataframes <- list()
 
 # Nombres de las carpetas
-nombres_carpetas <- c("ZZ66110", "ZZ66111", "ZZ66112")
+nombres_carpetas <- c("ZZ6610", "ZZ6612","ZZ6615","ZZ6616", "ZZ661111", "ZZ661112")
 
 # Iterar sobre las carpetas y archivos
 for (nombre_carpeta in nombres_carpetas) {
@@ -50,18 +56,3 @@ write.csv(df_export, archivo_salida, row.names = FALSE)
 
 # Imprimir la ubicación del archivo de salida
 cat("Resultados exportados a:", archivo_salida, "\n")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
