@@ -5,13 +5,13 @@ if (!require(dplyr)) {
 library(dplyr)
 
 # Definir la variable 'envios'
-envios <- 11000
+envios <- 9150
 
 # Lista para almacenar los dataframes
 lista_dataframes <- list()
 
 # Nombres de las carpetas
-nombres_carpetas <- c("ZZ6610", "ZZ6612","ZZ6615","ZZ6616", "ZZ661111", "ZZ661112")
+nombres_carpetas <- c("ZZ6610","ZZ6611","ZZ6613","ZZ6614","ZZ6615","ZZ6617","ZZ6619","ZZ6610","ZZ661111", "ZZ661112")
 
 # Iterar sobre las carpetas y archivos
 for (nombre_carpeta in nombres_carpetas) {
@@ -56,3 +56,10 @@ write.csv(df_export, archivo_salida, row.names = FALSE)
 
 # Imprimir la ubicación del archivo de salida
 cat("Resultados exportados a:", archivo_salida, "\n")
+
+
+# Filtrar el dataframe para obtener la fila asociada al número de envíos
+fila_envios <- df_final[df_final$indice == envios, ]
+
+# Imprimir la fila completa
+print(fila_envios)
